@@ -1,0 +1,2 @@
+echo "[Husky] (pre-commit) Checking linting..."
+npx lint-staged
