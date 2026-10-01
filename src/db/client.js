@@ -14,13 +14,13 @@ const {
 let clientPromise = null;
 
 async function connectWithM2M(client) {
-  console.log("[deployed] Using M2M OAuth (job SP client credentials)");
+  console.log("[deployed] Using M2M OAuth (app service principal credentials)");
   await client.connect({
     host: process.env.DATABRICKS_HOST,
     path: `/sql/1.0/warehouses/${process.env.DATABRICKS_WAREHOUSE_ID}`,
     authType: "databricks-oauth",
-    oauthClientId: process.env.JOB_SP_CLIENT_ID,
-    oauthClientSecret: process.env.JOB_SP_CLIENT_SECRET,
+    oauthClientId: process.env.DATABRICKS_CLIENT_ID,
+    oauthClientSecret: process.env.DATABRICKS_CLIENT_SECRET,
   });
 }
 
