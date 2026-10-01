@@ -1,0 +1,15 @@
+resources:
+  apps:
+    account_fit_insights:
+      name: account-fit-insights
+      description: Account fit / propensity dashboard - JMAN sandbox demo
+      # Repo root; runtime command and env vars come from app.yaml
+      source_code_path: ..
+      resources:
+        - name: sql-warehouse
+          sql_warehouse:
+            id: ${var.warehouse_id}
+            permission: CAN_USE
+      permissions:
+        - group_name: users
+          level: CAN_USE

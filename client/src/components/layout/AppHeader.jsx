@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { getUserDisplayName, getUserInitials } from "@/lib/user";
+import jmanFullLogo from "@/assets/images/jman_full_logo.png";
 
 export function AppHeader({ user, className }) {
   const displayName = getUserDisplayName(user);
@@ -13,8 +14,8 @@ export function AppHeader({ user, className }) {
       )}
     >
       <div className="flex h-14 items-center justify-between px-6">
-        {/* Wordmark */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
+          <img src={jmanFullLogo} alt="JMAN Group" className="h-12 w-auto" />
           <span className="text-sm font-semibold tracking-wide text-dark-blue">
             Account Fit Insights
           </span>

@@ -29,18 +29,18 @@ const app = express();
 app.use(createCorsMiddleware(cors));
 app.use(express.json());
 
-if (process.env.NODE_ENV !== "production") {
-  app.use((req, res, next) => {
-    if (!req.headers["x-forwarded-user"]) {
-      const mockUserId = process.env.MOCK_USER_ID || "demo-user";
-      req.headers["x-forwarded-user"] = mockUserId;
-      req.headers["x-forwarded-email"] = "test.user@example.com";
-      req.headers["x-forwarded-preferred-username"] = "testuser";
-      console.log(`[LOCAL DEV] Mocking user with ID: ${mockUserId}`);
-    }
-    next();
-  });
-}
+// if (process.env.NODE_ENV !== "production") {
+//   app.use((req, res, next) => {
+//     if (!req.headers["x-forwarded-user"]) {
+//       const mockUserId = process.env.MOCK_USER_ID || "demo-user";
+//       req.headers["x-forwarded-user"] = mockUserId;
+//       req.headers["x-forwarded-email"] = "test.user@example.com";
+//       req.headers["x-forwarded-preferred-username"] = "testuser";
+//       console.log(`[LOCAL DEV] Mocking user with ID: ${mockUserId}`);
+//     }
+//     next();
+//   });
+// }
 
 // Extract user context from Databricks Apps X-Forwarded-* headers
 app.use(attachUserContext);

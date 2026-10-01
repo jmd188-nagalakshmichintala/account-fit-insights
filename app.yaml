@@ -1,0 +1,15 @@
+command: ["node", "server.js"]
+
+env:
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: "sql-warehouse"
+  - name: DATABRICKS_APP_PORT
+    value: "8000"
+  - name: APP_ENV
+    value: "dev"
+  - name: TARGET_CATALOG
+    value: "databricks_apps"
+  - name: TARGET_SCHEMA
+    value: "account_intelligence"
+  - name: GONG_BASE_URL
+    value: "https://app.gong.io"

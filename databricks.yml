@@ -1,0 +1,16 @@
+bundle:
+  name: account-fit-insights
+
+include:
+  - resources/*.yml
+
+variables:
+  warehouse_id:
+    description: SQL warehouse the app queries (bound to the app as "sql-warehouse")
+    default: d1d9da1558fd7593
+
+targets:
+  dev:
+    default: true
+    workspace:
+      host: https://dbc-7e0e393c-4e1b.cloud.databricks.com
