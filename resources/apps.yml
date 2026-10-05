@@ -5,6 +5,18 @@ resources:
       description: Account fit / propensity dashboard - JMAN sandbox demo
       # Repo root; runtime command and env vars come from app.yaml
       source_code_path: ..
+
+      # On-behalf-of-user authorization: once granted, Databricks forwards each
+      # logged-in user's own access token via X-Forwarded-Access-Token (read in
+      # shared/lib/middleware/userContext.js), which genieService.js uses for
+      # Genie calls instead of the app's service-principal M2M session (that
+      # session's token only carries "sql" scope, not "genie" - M2M alone 403s
+      # on actually sending a Genie message). First-time users are prompted to
+      # consent to these scopes.
+      user_api_scopes:
+        - sql
+        - genie
+
       resources:
         - name: sql-warehouse
           sql_warehouse:
