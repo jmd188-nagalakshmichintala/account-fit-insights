@@ -13,3 +13,5 @@ env:
     value: "account_intelligence"
   - name: GONG_BASE_URL
     value: "https://app.gong.io"
+  - name: DATABRICKS_GENIE_SPACE_ID
+    value: "01f1c0a429f61f64a328e8c5753db65b"
