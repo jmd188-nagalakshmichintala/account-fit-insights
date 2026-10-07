@@ -330,7 +330,9 @@ export async function getSpaceInfo(forwardedToken) {
 
 // Sample questions are static, space-admin-configured prompts (not answer-
 // specific follow-ups) buried inside a JSON-encoded `serialized_space` string
-// on the space object.
+// on the space object. Their location depends on the space's schema version:
+// version 2 stores them under instructions.example_question_sqls, while
+// older spaces use config.sample_questions.
 export async function getSampleQuestions(forwardedToken) {
   const space = await spaceFetch(
     "?include_serialized_space=true",
@@ -338,7 +340,10 @@ export async function getSampleQuestions(forwardedToken) {
     forwardedToken,
   );
   const serializedSpace = JSON.parse(space.serialized_space ?? "{}");
-  const sampleQuestions = serializedSpace.config?.sample_questions ?? [];
+  const sampleQuestions =
+    serializedSpace.instructions?.example_question_sqls ??
+    serializedSpace.config?.sample_questions ??
+    [];
 
   return sampleQuestions.map((sample) => ({
     id: sample.id,
